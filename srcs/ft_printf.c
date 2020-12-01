@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 03:21:33 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/01 05:43:34 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/01 23:36:22 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,12 @@ size_t	ft_print_arg(va_list *ap, char *str, size_t *length)
 		return (0);
 	if (flags->type == 'd' || flags->type == 'i')
 		ft_print_arg_int(ap, flags, length);
-	else if (flags->type == 'x' || flags->type == 'X')
-		return (0);
+	else if (flags->type == 'x' || flags->type == 'X' || flags->type == 'u')
+		ft_print_arg_uint(ap, flags, length);
 	else if (flags->type == 's')
 		ft_print_arg_string(ap, flags, length);
 	else if (flags->type == 'c')
 		ft_print_arg_character(ap, flags, length);
-	else if (flags->type == 'u')
-		ft_print_arg_uint(ap, flags, length);
 	else if (flags->type == 'p')
 		ft_print_arg_pointer(ap, flags, length);
 	free(flags);
@@ -89,8 +87,9 @@ int		ft_printf(const char *str, ...)
 	{
 		if (str[i] == '%' && str[i + 1])
 		{
-			temp = ft_print_arg(&ap, (char*)str + i, &length);
-			if (temp)
+			if (str[i + 1] == '%')
+				i++;
+			else if ((temp = ft_print_arg(&ap, (char*)str + i, &length)))
 			{
 				i += temp;
 				continue;

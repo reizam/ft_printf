@@ -6,11 +6,11 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 03:42:11 by kmazier           #+#    #+#             */
-/*   Updated: 2020/11/17 22:57:57 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/01 23:35:59 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 void	ft_putnbr_fd(int n, int fd)
 {

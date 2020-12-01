@@ -6,11 +6,11 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 14:39:44 by user42            #+#    #+#             */
-/*   Updated: 2020/11/17 22:55:48 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/01 23:35:56 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 size_t	ft_strlen(const char *s)
 {

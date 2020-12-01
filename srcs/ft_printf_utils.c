@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 04:27:08 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/01 05:00:55 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/01 23:30:52 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ size_t	ft_nblen(int nbr)
 	return (len);
 }
 
-size_t	ft_unblen(unsigned int nbr)
+size_t	ft_unblen(unsigned long nbr, int hex)
 {
 	size_t len;
 
 	len = 0;
-	while (nbr > 9)
+	while (nbr > (hex ? 15 : 9))
 	{
-		nbr /= 10;
+		nbr /= (hex ? 16 : 10);
 		len++;
 	}
 	len++;
@@ -53,4 +53,15 @@ void	ft_putunbr_fd(unsigned int n, int fd)
 		n %= 10;
 	}
 	ft_putchar_fd(n + 48, fd);
+}
+
+void	ft_print_address(unsigned long n)
+{
+	char *hex = "0123456789abcdef";
+	
+	if (n)
+	{
+		ft_print_address(n / 16);
+		ft_putchar_fd(hex[n % 16] ,1);
+	}
 }

@@ -6,14 +6,15 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 03:25:52 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/01 05:57:28 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/01 23:33:02 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "libft.h"
+# include <stdlib.h>
+# include <unistd.h>
 # include <stdarg.h>
 
 typedef struct	s_flags
@@ -25,6 +26,12 @@ typedef struct	s_flags
 	char	type;
 }				t_flags;
 
+size_t	ft_strlen(const char *s);
+int		ft_atoi(char *str);
+int		ft_isdigit(int c);
+void	ft_putchar_fd(char c, int fd);
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putnbr_fd(int n, int fd);
 void	ft_putunbr_fd(unsigned int n, int fd);
 int		ft_printf(const char *str, ...);
 void	ft_print_arg_pointer(va_list *ap, t_flags *flags, size_t *length);
@@ -33,6 +40,9 @@ void	ft_print_arg_int(va_list *ap, t_flags *flags, size_t *length);
 void	ft_print_arg_uint(va_list *ap, t_flags *flags, size_t *length);
 void	ft_print_arg_character(va_list *ap, t_flags *flags, size_t *length);
 size_t	ft_nblen(int nbr);
-size_t	ft_unblen(unsigned int nbr);
+size_t	ft_unblen(unsigned long nbr, int hex);
+void	ft_putnbr_base(int nbr, char *base);
+void	ft_print_address(unsigned long n);
+char	*ft_convert_base(char *nbr, char *base_from, char *base_to);
 
 #endif

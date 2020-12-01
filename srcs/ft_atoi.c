@@ -6,11 +6,11 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 10:24:01 by kmazier           #+#    #+#             */
-/*   Updated: 2020/11/18 13:36:03 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/01 23:25:55 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 int		ft_atoi(char *str)
 {
