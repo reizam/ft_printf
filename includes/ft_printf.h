@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 03:25:52 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/01 05:48:16 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/01 05:57:28 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ typedef struct	s_flags
 	char	type;
 }				t_flags;
 
-void	ft_putnbr_base(int nbr, char *base);
-int		ft_atoi_base(char *str, char *base);
 void	ft_putunbr_fd(unsigned int n, int fd);
 int		ft_printf(const char *str, ...);
 void	ft_print_arg_pointer(va_list *ap, t_flags *flags, size_t *length);
