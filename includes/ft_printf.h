@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 03:25:52 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/02 10:04:51 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/02 10:17:46 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_print_arg_string(va_list *ap, t_flags *flags, size_t *length);
 void	ft_print_arg_int(va_list *ap, t_flags *flags, size_t *length);
 void	ft_print_arg_uint(va_list *ap, t_flags *flags, size_t *length);
 void	ft_print_arg_character(va_list *ap, t_flags *flags, size_t *length);
-void	ft_print_nb_flags(t_flags *flags, size_t *len, size_t *length);
+void	ft_print_nb_flags(t_flags *flags, size_t *len, size_t *length, int negative);
 void	ft_print_flags(t_flags *flags, int end, size_t len, size_t *length);
 size_t	ft_nblen(int nbr);
 size_t	ft_unblen(unsigned long nbr, int hex);
