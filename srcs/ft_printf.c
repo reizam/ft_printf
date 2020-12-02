@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 03:21:33 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/02 10:43:18 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/02 21:01:54 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		ft_is_conversions(char c)
 
 int		ft_check_flags(t_flags *flags)
 {
-	return (flags->type != '\0' && flags->spaces != -1 && flags->left_zero != -1);
+	return (flags->type != '\0' && flags->left_zero != -1);
 }
 
 int	ft_parse_nb(char *str, va_list *ap, size_t *offset)
