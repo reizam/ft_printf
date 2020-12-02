@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 07:48:23 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/02 09:44:40 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/02 09:58:38 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	ft_print_flags(t_flags *flags, int end, size_t len, size_t *length)
 		diff = (-flags->spaces) - len;
 	else if (!end && flags->spaces > 0)
 		diff = flags->spaces - len;
+	else if (end && flags->left_zero < 0)
+		diff = (-flags->left_zero) - len;
 	if (diff > 0)
 		*length += diff;
 	while (diff > 0)
