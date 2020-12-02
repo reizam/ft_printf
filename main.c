@@ -29,8 +29,11 @@ void	ft_test(char *str, char *a1, int a2, char a3, unsigned int a4, unsigned int
 
 int main (void)
 {
-	printf("%-5.X\n", 1);
-	ft_printf("%-5.X\n", 1);
+	int len;
+	len = printf("Il fait au moins %x\n", (unsigned int)-8000);
+	printf("LEN : %d\n", len);
+	len = ft_printf("Il fait au moins %x\n", (unsigned int)-8000);
+	printf("LEN : %d\n", len);
 	// ft_test("Salut les gens %s %d %c %X %x %.20p\n", "(argument stylax mamen)", 42, 'B', 21021, 5120, (void*)"saluutlesgernsrjij");
 }
 

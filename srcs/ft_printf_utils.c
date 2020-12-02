@@ -6,13 +6,13 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 04:27:08 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/02 10:36:41 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/02 20:12:45 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	ft_nblen(int nbr)
+size_t	ft_nblen(long double nbr)
 {
 	size_t len;
 
