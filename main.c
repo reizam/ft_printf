@@ -29,7 +29,8 @@ void	ft_test(char *str, char *a1, int a2, char a3, unsigned int a4, unsigned int
 
 int main (void)
 {
-	ft_test("Salut les gens %%d %s %d %c %.X %x %p\n", "(argument stylax mamen)", 42, 'B', 42312312, 123123213, (void*)"saluutlesgernsrjij");
+	// printf("Voici le test : %012x\n", 132132132);
+	ft_test("Salut les gens %s %d %c %X %x %.20p\n", "(argument stylax mamen)", 42, 'B', 21021, 5120, (void*)"saluutlesgernsrjij");
 }
 
 

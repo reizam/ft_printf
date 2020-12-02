@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 03:25:52 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/01 23:33:02 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/02 07:48:49 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ typedef struct	s_flags
 }				t_flags;
 
 size_t	ft_strlen(const char *s);
-int		ft_atoi(char *str);
-int		ft_isdigit(int c);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
@@ -39,6 +37,8 @@ void	ft_print_arg_string(va_list *ap, t_flags *flags, size_t *length);
 void	ft_print_arg_int(va_list *ap, t_flags *flags, size_t *length);
 void	ft_print_arg_uint(va_list *ap, t_flags *flags, size_t *length);
 void	ft_print_arg_character(va_list *ap, t_flags *flags, size_t *length);
+void	ft_print_nb_flags(t_flags *flags, size_t len, size_t *length);
+void	ft_print_flags(t_flags *flags, int end, size_t len, size_t *length);
 size_t	ft_nblen(int nbr);
 size_t	ft_unblen(unsigned long nbr, int hex);
 void	ft_putnbr_base(int nbr, char *base);
