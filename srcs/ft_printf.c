@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 03:21:33 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/02 21:30:23 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/02 21:32:38 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ t_flags	*ft_parse_flags(char *str, va_list *ap, size_t *f_len)
 		}
 		else if (ft_is_conversions(str[i]))
 		{
-			printf("amount_show: %d, left_zero: %d\n", flags->amount_set, flags->lzero_set);
 			flags->type = str[i];
 			*f_len = i;
 			return (flags);
