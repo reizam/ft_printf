@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 04:27:08 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/02 10:12:17 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/02 10:32:49 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,7 @@ void	ft_print_address(unsigned long n)
 {
 	char *hex = "0123456789abcdef";
 	
-	if (n)
-	{
+	if (n > 15)
 		ft_print_address(n / 16);
-		ft_putchar_fd(hex[n % 16] ,1);
-	}
+	ft_putchar_fd(hex[n % 16] ,1);
 }
