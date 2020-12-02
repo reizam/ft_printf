@@ -6,13 +6,13 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 03:42:11 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/02 20:44:56 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/02 21:17:16 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(long int n, int fd)
 {
 	long long int nbr;
 
