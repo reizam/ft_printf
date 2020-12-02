@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 03:25:52 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/02 09:49:02 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/02 10:04:51 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
+# include <stdio.h>
 
 typedef struct	s_flags
 {
