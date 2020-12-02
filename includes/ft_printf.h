@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 03:25:52 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/02 20:45:54 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/02 21:13:41 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_print_flags(t_flags *flags, int end, size_t len, size_t *length);
 size_t	ft_nblen(int nbr);
 size_t	ft_unblen(unsigned long nbr, int hex);
 void	ft_putnbr_base(int nbr, char *base);
-void	ft_print_address(unsigned long n);
+void	ft_print_hex(unsigned long n, int maj);
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 04:27:45 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/02 20:47:35 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/02 21:13:28 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_print_arg_uint(va_list *ap, t_flags *flags, size_t *length)
 	ft_print_flags(flags, 0, len, length);
 	ft_print_nb_flags(flags, &len, length, 0);
 	if (flags->type == 'x' || flags->type == 'X')
-		ft_putnbr_base(nbr, flags->type == 'x' ? "0123456789abcdef" : "0123456789ABCDEF");
+		ft_print_hex(nbr, flags->type == 'X');
 	else
 		ft_putunbr_fd(nbr, 1);
 	ft_print_flags(flags, 1, len, length);
@@ -89,6 +89,6 @@ void	ft_print_arg_pointer(va_list *ap, t_flags *flags, size_t *length)
 	len -= 2;
 	ft_print_nb_flags(flags, &len, length, 0);
 	len += 2;
-	ft_print_address(n);
+	ft_print_hex(n, 0);
 	ft_print_flags(flags, 1, len, length);
 }
