@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 04:27:45 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/02 10:18:31 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/02 10:25:04 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	ft_print_arg_string(va_list *ap, t_flags *flags, size_t *length)
 
 	str = (const char*)va_arg(*ap, const char*);
 	len = ft_strlen(str);
-	if (flags->amount_show > 0 && len > (size_t)flags->amount_show)
+	if (flags->amount_set && len > (size_t)flags->amount_show)
 		len = (size_t)flags->amount_show > len ? len + 1 : (size_t)flags->amount_show;
 	*length += len;
 	ft_print_flags(flags, 0, len, length);

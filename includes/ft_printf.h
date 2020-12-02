@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 03:25:52 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/02 10:17:46 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/02 10:23:36 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct	s_flags
 	int		spaces;
 	int		left_zero;
 	int		amount_show;
+	int		amount_set;
 	char	type;
 }				t_flags;
 

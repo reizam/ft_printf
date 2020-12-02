@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 03:21:33 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/02 09:54:10 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/02 10:24:12 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ t_flags	*ft_parse_flags(char *str, va_list *ap, size_t *f_len)
 	flags->type = 0;
 	flags->amount_show = 0;
 	flags->left_zero = 0;
+	flags->amount_set = 0;
+	flags->spaces = 0;
 	if (str[i] == '*' || (str[i] >= '1' && str[i] <= '9'))
 		flags->spaces = ft_parse_nb(str + i, ap, &i);
 	while (str[i])
@@ -70,8 +72,11 @@ t_flags	*ft_parse_flags(char *str, va_list *ap, size_t *f_len)
 		}
 		else if (str[i] == '0')
 			flags->left_zero = ft_parse_nb(str + i + 1, ap, &i);
-		else if (str[i] == '.')
+		else if (str[i] == '.' && flags->amount_set != 1)
+		{
 			flags->amount_show = ft_parse_nb(str + i + 1, ap, &i);
+			flags->amount_set = 1;
+		}
 		else if (ft_is_conversions(str[i]))
 		{
 			flags->type = str[i];
