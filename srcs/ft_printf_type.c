@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 04:27:45 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/02 10:10:36 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/02 10:12:35 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	ft_print_arg_int(va_list *ap, t_flags *flags, size_t *length)
 	{
 		ft_putchar_fd('-', 1);
 		nbr *= -1;
+		len--;
 	}
 	ft_print_nb_flags(flags, &len, length);
 	ft_putnbr_fd(nbr, 1);

@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 04:27:08 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/02 10:10:19 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/02 10:12:17 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ size_t	ft_nblen(int nbr)
 	size_t len;
 
 	len = 0;
+	if (nbr < 0)
+	{
+		nbr = -nbr;
+		len++;
+	}
 	while (nbr > 9)
 	{
 		nbr /= 10;
