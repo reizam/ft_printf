@@ -29,7 +29,7 @@ void	ft_test(char *str, char *a1, int a2, char a3, unsigned int a4, unsigned int
 
 int main (void)
 {
-	ft_printf("%-2d\n", 12312);
+	printf("%*d\n", -32, 12312);
 	// ft_test("Salut les gens %s %d %c %X %x %.20p\n", "(argument stylax mamen)", 42, 'B', 21021, 5120, (void*)"saluutlesgernsrjij");
 }
 

@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 03:21:33 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/02 08:19:56 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/02 08:43:46 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		ft_is_conversions(char c)
 
 int		ft_check_flags(t_flags *flags)
 {
-	return (flags->type != '\0' && flags->left_space != -1 && flags->right_space != -1 && flags->left_zero != -1);
+	return (flags->type != '\0' && flags->star_space != -1 && flags->right_space != -1 && flags->left_zero != -1);
 }
 
 int	ft_parse_nb(char *str, size_t *offset)
@@ -53,14 +53,14 @@ t_flags	*ft_parse_flags(char *str, va_list *ap, size_t *f_len)
 	flags->type = 0;
 	flags->amount_show = 0;
 	flags->left_zero = 0;
-	flags->left_space = 0;
+	flags->star_space = 0;
 	flags->right_space = 0;
 	while (str[i])
 	{
 		if (str[i] == '-' && flags->right_space != -1)
 			flags->right_space = flags->right_space > 0 ? -1 : ft_parse_nb(str + i + 1, &i);
-		else if (str[i] == '*' && flags->right_space != -1)
-			flags->right_space = flags->right_space > 0 ? -1 : (int) va_arg(*ap, int);
+		else if (str[i] == '*' && flags->star_space != -1)
+			flags->star_space = flags->star_space > 0 ? -1 : (int) va_arg(*ap, int);
 		else if (str[i] == '0' && flags->left_zero != -1)
 			flags->left_zero = flags->left_zero > 0 ? -1 : ft_parse_nb(str + i + 1, &i);
 		else if (str[i] == '.' && flags->amount_show != -1)
@@ -69,6 +69,11 @@ t_flags	*ft_parse_flags(char *str, va_list *ap, size_t *f_len)
 		{
 			flags->type = str[i];
 			*f_len = i;
+			if (flags->star_space < 0)
+			{
+				flags->right_space = -flags->star_space;
+				flags->star_space = 0;
+			}
 			return (flags);
 		}
 		else
