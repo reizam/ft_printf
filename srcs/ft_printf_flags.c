@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 07:48:23 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/02 08:15:31 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/02 08:28:12 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ void	ft_print_nb_flags(t_flags *flags, size_t *len, size_t *length)
 	if (flags->left_space > 0)
 		return ;
 	if (diff > 0)
+	{
 		*length += diff;
-	*len += diff;
+		*len += diff;
+	}
 	while (diff > 0)
 	{
 		ft_putchar_fd('0', 1);
