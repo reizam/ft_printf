@@ -30,9 +30,9 @@ void	ft_test(char *str, char *a1, int a2, char a3, unsigned int a4, unsigned int
 int main (void)
 {
 	int len;
-	len = printf("%*.*i\n", 1, 4, 8);
+	len = printf("%*.*i\n", 0, -2, 8);
 	printf("LEN : %d\n", len);
-	len = ft_printf("%*.*i\n", 1, 4, 8);
+	len = ft_printf("%*.*i\n", 0, -2, 8);
 	printf("LEN : %d\n", len);
 	// ft_test("Salut les gens %s %d %c %X %x %.20p\n", "(argument stylax mamen)", 42, 'B', 21021, 5120, (void*)"saluutlesgernsrjij");
 }
