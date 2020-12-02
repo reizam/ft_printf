@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 11:17:01 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/02 10:33:43 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/02 10:36:52 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ int		ft_check_base_nbr(char *base)
 
 void	ft_write(int nb, char *base, unsigned int blen)
 {
-	if (((unsigned int)nb) > 0)
+	if (((unsigned int)nb) > blen - 1)
 	{
 		ft_write(nb / blen, base, blen);
-		ft_putchar_fd(base[nb % blen], 1);
+		nb %= blen;
 	}
-	
+	ft_putchar_fd(base[nb], 1);
 }
 
 void	ft_putnbr_base(int nbr, char *base)
