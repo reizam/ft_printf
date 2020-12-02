@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 03:21:33 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/02 08:43:46 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/02 09:28:19 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,22 @@ int		ft_is_conversions(char c)
 
 int		ft_check_flags(t_flags *flags)
 {
-	return (flags->type != '\0' && flags->star_space != -1 && flags->right_space != -1 && flags->left_zero != -1);
+	return (flags->type != '\0' && flags->right_spaces != -1 && flags->left_zero != -1);
 }
 
-int	ft_parse_nb(char *str, size_t *offset)
+int	ft_parse_nb(char *str, va_list *ap, size_t *offset)
 {
 	int		result;
 	size_t 	i;
 
 	i = 0;
 	result = 0;
+	if (str[i] == '*')
+	{
+		*offset += 1;
+		result = (int) va_arg(*ap, int);
+		return (result < 0 ? -result : result);
+	}
 	while (str[i])
 	{
 		if (str[i] >= '0' && str[i] <= '9')
@@ -38,7 +44,7 @@ int	ft_parse_nb(char *str, size_t *offset)
 		i++;
 	}
 	*offset += i;
-	return (result);
+	return (result < 0 ? -result : result);
 }
 #include <stdio.h>
 
@@ -53,27 +59,22 @@ t_flags	*ft_parse_flags(char *str, va_list *ap, size_t *f_len)
 	flags->type = 0;
 	flags->amount_show = 0;
 	flags->left_zero = 0;
-	flags->star_space = 0;
-	flags->right_space = 0;
+	flags->right_spaces = 0;
+	flags->left_spaces = 0;
+	if (str[i] == '*' || (str[i] >= '1' && str[i] <= '9'))
+		flags->left_spaces = ft_parse_nb(str + i, ap, &i);
 	while (str[i])
 	{
-		if (str[i] == '-' && flags->right_space != -1)
-			flags->right_space = flags->right_space > 0 ? -1 : ft_parse_nb(str + i + 1, &i);
-		else if (str[i] == '*' && flags->star_space != -1)
-			flags->star_space = flags->star_space > 0 ? -1 : (int) va_arg(*ap, int);
-		else if (str[i] == '0' && flags->left_zero != -1)
-			flags->left_zero = flags->left_zero > 0 ? -1 : ft_parse_nb(str + i + 1, &i);
-		else if (str[i] == '.' && flags->amount_show != -1)
-			flags->amount_show = flags->amount_show > 0 ? -1 : ft_parse_nb(str + i + 1, &i);
+		if (str[i] == '-')
+			flags->right_spaces = ft_parse_nb(str + i + 1, ap, &i);
+		else if (str[i] == '0')
+			flags->left_zero = ft_parse_nb(str + i + 1, ap, &i);
+		else if (str[i] == '.')
+			flags->amount_show = ft_parse_nb(str + i + 1, ap, &i);
 		else if (ft_is_conversions(str[i]))
 		{
 			flags->type = str[i];
 			*f_len = i;
-			if (flags->star_space < 0)
-			{
-				flags->right_space = -flags->star_space;
-				flags->star_space = 0;
-			}
 			return (flags);
 		}
 		else
