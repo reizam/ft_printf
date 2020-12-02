@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 03:21:33 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/02 22:10:32 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/02 22:12:30 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ t_flags	*ft_parse_flags(char *str, va_list *ap, size_t *f_len)
 		if (str[i] == '-' && flags->spaces_set == 0)
 		{
 			flags->spaces = (-ft_parse_nb(str + i + 1, ap, &i));
+			if (flags->spaces > 0)
+				flags->spaces *= -1;
 			flags->spaces_set = 1;
 		}
 		else if (str[i] == '0' && flags->lzero_set == 0)
@@ -88,11 +90,9 @@ t_flags	*ft_parse_flags(char *str, va_list *ap, size_t *f_len)
 		{
 			flags->type = str[i];
 			*f_len = i;
-			if (flags->spaces_set == 1 && flags->amount_set == 1 && flags->amount_show > 0)
-				if (flags->amount_show < flags->spaces)
-					flags->spaces = flags->spaces - flags->amount_show;
-			if (flags->spaces > 0)
-				flags->spaces *= -1;
+			// if (flags->spaces_set == 1 && flags->amount_set == 1 && flags->amount_show > 0)
+			// 	if (flags->amount_show < flags->spaces)
+			// 		flags->spaces = flags->spaces - flags->amount_show;
 			return (flags);
 		}
 		else
