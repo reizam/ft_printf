@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 04:27:45 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/03 09:49:12 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/03 09:50:25 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_print_arg_int(va_list *ap, t_flags *flags, size_t *length)
 	nbr = (long int)va_arg(*ap, int);
 	len = ft_strlen((str = ft_itoa(nbr)));
 	j = ft_calc_zero(flags, nbr, len) + (nbr == 0 && flags->amount_set == 1 ? 0 : 1);
-	len += j;
+	len += (size_t)j;
 	ft_print_flags(flags, 0, len, length);
 	if (str[0] && str[0] == '-')
 	{
