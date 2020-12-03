@@ -6,28 +6,39 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 07:48:23 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/03 02:07:13 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/03 04:52:11 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_print_nb_flags(t_flags *flags, size_t *len, size_t *length, int negative)
+size_t	ft_calc_zero(t_flags *flags, size_t *len, size_t *length, int negative)
 {
-	int diff;
-	
+	int 	diff;
+	size_t 	zero;
+
 	diff = 0;
-	// SI 0 est > 0 et . est defini
-
-	if (flags->lzero_set == 1)
-		diff = flags->left_zero - *len;
-	if (flags->amount_set == 1)
-	{
-		
-	}
-
+	zero = 0;
 	diff = flags->lzero_set  == 1 && flags->left_zero > 0 ? flags->left_zero - *len : flags->amount_show - (*len - negative);
-	
+	if (diff > 0)
+	{
+		*length += diff;
+		*len += diff;
+	}
+	while (diff > 0)
+	{
+		diff--;
+		zero++;
+	}
+	return (zero);
+}
+
+void	ft_print_nbflags(t_flags *flags, size_t *len, size_t *length, int negative)
+{
+	int 	diff;
+
+	diff = 0;
+	diff = flags->lzero_set  == 1 && flags->left_zero > 0 ? flags->left_zero - *len : flags->amount_show - (*len - negative);
 	if (diff > 0)
 	{
 		*length += diff;

@@ -6,13 +6,13 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 03:42:11 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/02 21:19:45 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/03 04:49:53 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putnbr_fd(long int n, int fd)
+void	ft_putnbr_fd(long int n, int fd, size_t zero_amount)
 {
 	long long int nbr;
 
@@ -22,9 +22,14 @@ void	ft_putnbr_fd(long int n, int fd)
 		ft_putchar_fd('-', fd);
 		nbr *= -1;
 	}
+	while (zero_amount > 0)
+	{
+		ft_putchar_fd('0', fd);
+		zero_amount--;
+	}
 	if (n > 9)
 	{
-		ft_putnbr_fd(nbr / 10, fd);
+		ft_putnbr_fd(nbr / 10, fd, 0);
 		nbr = nbr % 10;
 	}
 	ft_putchar_fd(nbr + 48, fd);

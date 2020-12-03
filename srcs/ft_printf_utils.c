@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 04:27:08 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/03 01:41:12 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/03 04:51:50 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_putunbr_fd(unsigned int n, int fd)
 {
 	if (n > 9)
 	{
-		ft_putnbr_fd(n / 10, fd);
+		ft_putunbr_fd(n / 10, fd);
 		n %= 10;
 	}
 	ft_putchar_fd(n + 48, fd);
