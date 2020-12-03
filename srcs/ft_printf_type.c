@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 04:27:45 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/03 05:16:37 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/03 07:01:21 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,32 @@
 void	ft_print_arg_int(va_list *ap, t_flags *flags, size_t *length)
 {
 	size_t		len;
-	size_t 		zero;
+	int 		zero;
 	long int	nbr;
 
 	zero = 0;
 	nbr = (long int)va_arg(*ap, int);
-	*length += (len = ft_nblen(nbr));
-	zero = ft_calc_zero(flags, &len, length, nbr < 0);
+	len = ft_nblen(nbr);
+	if (nbr == 0 && len == 1)
+		len--;
+	zero = ft_calc_zero(flags, &len, nbr);
 	ft_print_flags(flags, 0, len, length);
-	if (len)
+	if (nbr == 0 && zero == 0)
+	{
+		
+	}
+	else if (nbr == 0 && zero == 1)
+	{
+		ft_putchar_fd('0', 1);
+	}
+	else if (len)
+	{
+		if (nbr == 0)
+			zero--;
 		ft_putnbr_fd(nbr, 1, zero);
+	}
 	ft_print_flags(flags, 1, len, length);
+	*length += len;
 }
 
 void	ft_print_arg_uint(va_list *ap, t_flags *flags, size_t *length)
