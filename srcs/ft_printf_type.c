@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 04:27:45 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/03 08:20:56 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/03 08:49:28 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,39 @@
 void	ft_print_arg_int(va_list *ap, t_flags *flags, size_t *length)
 {
 	size_t		len;
+	int			i;
+	int			j;
 	long int	nbr;
 	char		*str;
 
 	nbr = (long int)va_arg(*ap, int);
 	len = ft_strlen((str = ft_itoa(nbr)));
-	nbr = 0;
 	ft_print_flags(flags, 0, len, length);
-	if (len)
-		write(1, str, len);
+	i = -1;
+	j = -1;
+	if (str[0] && str[0] == '-')
+	{
+		flags->amount_show += 1;
+		ft_putchar_fd('-', 1);
+		j++;
+	}
+	if (nbr == 0)
+	{
+		if (flags->amount_set && flags->amount_show > 0)
+		{
+			flags->amount_show -= 1;
+			ft_putchar_fd(str[0], 1);
+		}
+		else
+			(*length)--;
+		j++;
+	}
+	while (flags->amount_set && ++i < flags->amount_show)
+		ft_putchar_fd('0', 1);
+	while (str[++j])
+		ft_putchar_fd(str[j], 1);
 	ft_print_flags(flags, 1, len, length);
-	*length += len;
+	(*length) += j + i; 
 }
 
 void	ft_print_arg_uint(va_list *ap, t_flags *flags, size_t *length)
