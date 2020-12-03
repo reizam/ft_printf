@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 07:48:23 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/03 10:25:52 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/03 10:44:24 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int		ft_calc_zero(t_flags *flags, int nbr, int len)
 			flags->left_zero = 1;
 		zero = flags->left_zero - len;
 	}
+	if (zero < 0 && nbr != 0)
+		zero = 0;
 	return (zero);
 }
 

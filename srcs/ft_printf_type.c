@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 04:27:45 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/03 10:30:28 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/03 10:43:48 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	ft_print_arg_int(va_list *ap, t_flags *flags, size_t *length)
 
 	i = 0;
 	nbr = (long int)va_arg(*ap, int);
-	len = ft_strlen((str = ft_itoa(nbr)));
+	str = ft_itoa(nbr);
+	len = (int)ft_strlen(str);
 	j = (ft_calc_zero(flags, nbr, len));
 	ft_print_flags(flags, 0, len, length);
 	len += j;
@@ -32,7 +33,7 @@ void	ft_print_arg_int(va_list *ap, t_flags *flags, size_t *length)
 		i++;
 	}
 	ft_repeat_character('0', j);
-	if (!(j == -1 && flags->amount_set))
+	if (!(j == -1 && nbr == 0 && flags->amount_set))
 		while (str[i])
 			ft_putchar_fd(str[i++], 1);
 	ft_print_flags(flags, 1, len, length);
