@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 04:27:45 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/03 12:57:06 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/03 13:05:52 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,23 @@ void	ft_print_arg_uint(va_list *ap, t_flags *flags, size_t *length)
 {
 	size_t 			len;
 	unsigned int	nbr;
+	int				j;
 	
 	nbr = (unsigned int)va_arg(*ap, unsigned int);
-	*length += (len = ft_unblen(nbr, (flags->type == 'x' || flags->type == 'X')));
+	len = ft_unblen(nbr, (flags->type == 'x' || flags->type == 'X'));
+	j = (ft_calc_zero(flags, nbr, len));
+	if (j > 0)
+		len += j;
+	if (j == -1 && nbr == 0 && flags->amount_set && flags->amount_show >= 0)
+		len--;
 	ft_print_flags(flags, 0, len, length);
+	ft_repeat_character('0', j);
 	if ((flags->type == 'x' || flags->type == 'X') && nbr)
 		ft_print_hex(nbr, flags->type == 'X');
 	else
 		ft_putunbr_fd(nbr, 1);
 	ft_print_flags(flags, 1, len, length);
+	*length += len;
 }
 
 void	ft_print_arg_string(va_list *ap, t_flags *flags, size_t *length)
