@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 04:27:08 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/03 05:04:34 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/03 09:41:57 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,14 @@ void	ft_print_hex(unsigned long n, int maj)
 	{
 		ft_print_hex(n / 16, maj);
 		ft_putchar_fd(hex[n % 16] ,1);
+	}
+}
+
+void	ft_repeat_character(char c, int amount)
+{
+	while (amount > 0)
+	{
+		ft_putchar_fd(c, 1);
+		amount--;
 	}
 }

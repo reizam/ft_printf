@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 03:25:52 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/03 07:59:05 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/03 09:37:58 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putnbr_fd(long int n, int fd, size_t zero_amount);
 void	ft_putunbr_fd(unsigned int n, int fd);
 int		ft_printf(const char *, ...);
+int		ft_calc_zero(t_flags *flags, int nbr, int len);
+void	ft_repeat_character(char c, int amount);
 void	ft_print_arg_pointer(va_list *ap, t_flags *flags, size_t *length);
 void	ft_print_arg_string(va_list *ap, t_flags *flags, size_t *length);
 void	ft_print_arg_int(va_list *ap, t_flags *flags, size_t *length);
