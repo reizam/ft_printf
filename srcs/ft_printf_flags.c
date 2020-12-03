@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 07:48:23 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/03 07:17:02 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/03 07:23:33 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_calc_zero(t_flags *flags, size_t *len, long int nbr)
 
 	diff = 0;
 	zero = 0;
-	diff = flags->lzero_set == 1 && flags->left_zero > 0 ? flags->left_zero - *len : flags->amount_show - (*len - (nbr < 0));
+	diff = flags->amount_set == 1 ? flags->amount_show - (*len - (nbr < 0)) : flags->left_zero - *len;
 	while (diff > 0)
 	{
 		diff--;
