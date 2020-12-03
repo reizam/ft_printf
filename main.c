@@ -32,7 +32,7 @@ int main (void)
 	int len;
 	// len = printf("%0*.*d\n", 2, -2, 1);
 	// printf("LEN : %d\n", len);
-	len = ft_printf("%x %X\n", 1, 0, 0);
+	len = ft_printf("%.*d\n", 3, -12);
 	printf("LEN : %d\n", len);
 	// ft_test("Salut les gens %s %d %c %X %x %.20p\n", "(argument stylax mamen)", 42, 'B', 21021, 5120, (void*)"saluutlesgernsrjij");
 }
