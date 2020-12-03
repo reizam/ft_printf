@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 04:27:45 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/03 01:09:59 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/03 01:27:21 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_print_arg_uint(va_list *ap, t_flags *flags, size_t *length)
 	*length += (len = ft_unblen(nbr, (flags->type == 'x' || flags->type == 'X')));
 	ft_print_flags(flags, 0, len, length);
 	ft_print_nb_flags(flags, &len, length, 0);
-	if (flags->type == 'x' || flags->type == 'X')
+	if ((flags->type == 'x' || flags->type == 'X') && nbr)
 		ft_print_hex(nbr, flags->type == 'X');
 	else
 		ft_putunbr_fd(nbr, 1);
@@ -90,7 +90,7 @@ void	ft_print_arg_pointer(va_list *ap, t_flags *flags, size_t *length)
 	*length += (len = (ft_unblen(n, 1) + 2));
 	ft_print_flags(flags, 0, len, length);
 	ft_putstr_fd("0x", 1);
-	len -= 2;
+	len -= 2;	
 	ft_print_nb_flags(flags, &len, length, 0);
 	len += 2;
 	ft_print_hex(n, 0);
