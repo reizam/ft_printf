@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 03:21:33 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/02 22:12:30 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/03 01:29:31 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,19 +69,19 @@ t_flags	*ft_parse_flags(char *str, va_list *ap, size_t *f_len)
 	}
 	while (str[i])
 	{
-		if (str[i] == '-' && flags->spaces_set == 0)
+		if (str[i] == '-')
 		{
 			flags->spaces = (-ft_parse_nb(str + i + 1, ap, &i));
 			if (flags->spaces > 0)
 				flags->spaces *= -1;
 			flags->spaces_set = 1;
 		}
-		else if (str[i] == '0' && flags->lzero_set == 0)
+		else if (str[i] == '0')
 		{
 			flags->left_zero = ft_parse_nb(str + i + 1, ap, &i);
 			flags->lzero_set = 1;
 		}
-		else if (str[i] == '.' && flags->amount_set == 0)
+		else if (str[i] == '.')
 		{
 			flags->amount_show = ft_parse_nb(str + i + 1, ap, &i);
 			flags->amount_set = 1;
