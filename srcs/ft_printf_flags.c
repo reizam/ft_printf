@@ -6,53 +6,11 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 07:48:23 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/03 07:55:39 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/03 07:56:28 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int	ft_calc_zero(t_flags *flags, size_t *len, long int nbr)
-{
-	int 	diff;
-	int 	zero;
-
-	diff = 0;
-	zero = 0;
-	// if (nbr <= 9 && nbr >= -9 && flags->lzero_set && flags->amount_set && flags->amount_show < 0)
-	// {
-	// 	flags->amount_show = flags->lzero_set;
-	// 	len--;
-	// }
-	diff = flags->amount_set == 1 ? flags->amount_show - (*len - (nbr < 0)) : flags->left_zero - *len;
-	if (flags->amount_set == 1 && nbr <= 9 && nbr >= -9 && flags->lzero_set)
-		flags->spaces = flags->left_zero;
-	while (diff > 0)
-	{
-		diff--;
-		(*len)++;
-		zero++;
-	}
-	return (zero);
-}
-
-void	ft_print_nbflags(t_flags *flags, size_t *len, size_t *length, int negative)
-{
-	int 	diff;
-
-	diff = 0;
-	diff = flags->lzero_set  == 1 && flags->left_zero > 0 ? flags->left_zero - *len : flags->amount_show - (*len - negative);
-	if (diff > 0)
-	{
-		*length += diff;
-		*len += diff;
-	}
-	while (diff > 0)
-	{
-		ft_putchar_fd('0', 1);
-		diff--;
-	}
-}
 
 void	ft_print_flags(t_flags *flags, int end, size_t len, size_t *length)
 {

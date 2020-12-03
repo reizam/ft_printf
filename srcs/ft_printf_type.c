@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 04:27:45 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/03 07:55:16 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/03 08:19:16 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 void	ft_print_arg_int(va_list *ap, t_flags *flags, size_t *length)
 {
 	size_t		len;
-	int 		zero;
 	long int	nbr;
+	char		*str;
 
-	zero = 0;
 	nbr = (long int)va_arg(*ap, int);
-	len = ft_nblen(nbr);
-	// if (flags->amount_set && flags->amount_show == 0 && nbr == 0)
-		// len--;
-	zero = ft_calc_zero(flags, &len, nbr);
+	len = ft_strlen((str = ft_itoa(nbr)));
+	nbr = 0;
 	ft_print_flags(flags, 0, len, length);
-	if (len)
-		ft_putnbr_fd(nbr, 1, zero);
+	while (len && str[nbr])
+	{
+		ft_putchar_fd(1, str[nbr]);
+		nbr++;
+	}
 	ft_print_flags(flags, 1, len, length);
 	*length += len;
 }
@@ -39,7 +39,6 @@ void	ft_print_arg_uint(va_list *ap, t_flags *flags, size_t *length)
 	nbr = (unsigned int)va_arg(*ap, unsigned int);
 	*length += (len = ft_unblen(nbr, (flags->type == 'x' || flags->type == 'X')));
 	ft_print_flags(flags, 0, len, length);
-	ft_print_nbflags(flags, &len, length, 0);
 	if ((flags->type == 'x' || flags->type == 'X') && nbr)
 		ft_print_hex(nbr, flags->type == 'X');
 	else
@@ -86,9 +85,6 @@ void	ft_print_arg_pointer(va_list *ap, t_flags *flags, size_t *length)
 	*length += (len = (ft_unblen(n, 1) + 2));
 	ft_print_flags(flags, 0, len, length);
 	ft_putstr_fd("0x", 1);
-	len -= 2;
-	ft_print_nbflags(flags, &len, length, 0);
-	len += 2;
 	if (n)
 		ft_print_hex(n, 0);
 	else
