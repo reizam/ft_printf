@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 04:27:45 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/04 06:29:17 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/04 06:30:57 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,6 @@ void	ft_print_arg_uint(va_list *ap, t_flags *flags, size_t *length)
 		len += j;
 	if (j == -1 && nbr == 0 && flags->amount_set && flags->amount_show >= 0)
 		len--;
-	if (nbr == 0 && flags->amount_set && flags->amount_show < 0)
-	{
-		len++;
-		j++;
-	}
 	ft_print_flags(flags, 0, len, length);
 	ft_repeat_character('0', j);
 	if (!(j == -1 && nbr == 0 && flags->amount_set && flags->amount_show >= 0))
@@ -123,14 +118,12 @@ void	ft_print_arg_pointer(va_list *ap, t_flags *flags, size_t *length)
 	j = (ft_calc_zero(flags, 1, len - 2));
 	if (j > 0)
 		len += j;
-	if (n == 0 && flags->amount_set && flags->amount_show <= 0)
-		len--;
 	ft_print_flags(flags, 0, len, length);
 	ft_putstr_fd("0x", 1);
 	ft_repeat_character('0', j);
 	if (n)
 		ft_print_hex(n, 0);
-	else if (!flags->amount_set || flags->amount_show > 0)
+	else
 		ft_putchar_fd('0', 1);
 	ft_print_flags(flags, 1, len, length);
 	*length += len;
