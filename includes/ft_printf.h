@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 03:25:52 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/04 02:17:37 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/04 02:23:38 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_print_arg_character(va_list *ap, t_flags *flags, size_t *length);
 void	ft_print_arg_percentage(t_flags *flags, size_t *length);
 void	ft_print_flags(t_flags *flags, int end, size_t len, size_t *length);
 size_t	ft_nblen(long int nbr);
-size_t	ft_unblen(unsigned int nbr, int hex);
+size_t	ft_unblen(unsigned long nbr, int hex);
 void	ft_putnbr_base(int nbr, char *base);
 void	ft_print_hex(unsigned long n, int maj);
 

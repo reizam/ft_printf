@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 04:27:08 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/04 02:17:30 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/04 02:23:43 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ size_t	ft_nblen(long int nbr)
 	return (len);
 }
 
-size_t	ft_unblen(unsigned int nbr, int hex)
+size_t	ft_unblen(unsigned long nbr, int hex)
 {
 	size_t len;
 
