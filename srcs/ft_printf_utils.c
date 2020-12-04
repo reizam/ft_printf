@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 04:27:08 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/04 02:23:43 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/04 03:13:04 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,13 @@ void	ft_putunbr_fd(unsigned int n, int fd)
 
 void	ft_print_hex(unsigned long n, int maj)
 {
-	char *hex = maj ? "0123456789ABCDEF" : "0123456789abcdef";
-	
+	char *hex;
+
+	hex = maj ? "0123456789ABCDEF" : "0123456789abcdef";
 	if (n != 0)
 	{
 		ft_print_hex(n / 16, maj);
-		ft_putchar_fd(hex[n % 16] ,1);
+		ft_putchar_fd(hex[n % 16], 1);
 	}
 }
 

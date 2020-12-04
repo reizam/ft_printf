@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 03:21:33 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/04 01:09:52 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/04 03:20:02 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,24 @@
 
 int		ft_is_conversions(char c)
 {
-	return (c == '%' || c == 'd' || c == 'i' || c == 'x' || c == 'X' || c == 's' || c == 'c' || c == 'u' || c == 'p');
-}
-
-void	ft_reset_flags(t_flags *flags)
-{
-	flags->type = 0;
-	flags->amount_show = 0;
-	flags->left_zero = 0;
-	flags->amount_set = 0;
-	flags->lzero_set = 0;
-	flags->spaces = 0;
-	flags->spaces_set = 0;
+	return (c == '%' || c == 'd'
+	|| c == 'i' || c == 'x'
+	|| c == 'X' || c == 's'
+	|| c == 'c' || c == 'u'
+	|| c == 'p');
 }
 
 int		ft_parse_nb(char *str, va_list *ap, size_t *offset)
 {
 	int		result;
-	size_t 	i;
+	size_t	i;
 
 	i = 0;
 	result = 0;
 	if (str[i] == '*')
 	{
 		*offset += 1;
-		return ((int) va_arg(*ap, int));
+		return ((int)va_arg(*ap, int));
 	}
 	while (str[i])
 	{
@@ -57,7 +50,7 @@ t_flags	*ft_parse_flags(char *str, va_list *ap, size_t *f_len)
 	t_flags	*flags;
 	size_t	i;
 
-	i = 1;
+	i = 0;
 	if (!(flags = (t_flags*)malloc(sizeof(t_flags))))
 		return (NULL);
 	ft_reset_flags(flags);
@@ -66,14 +59,13 @@ t_flags	*ft_parse_flags(char *str, va_list *ap, size_t *f_len)
 		flags->spaces = ft_parse_nb(str + i, ap, &i);
 		flags->spaces_set = 1;
 	}
-	while (str[i])
-	{
+	while (str[++i])
 		if (str[i] == '-')
 		{
 			flags->spaces = (-ft_parse_nb(str + i + 1, ap, &i));
+			flags->spaces_set = 1;
 			if (flags->spaces > 0)
 				flags->spaces *= -1;
-			flags->spaces_set = 1;
 		}
 		else if (str[i] == '0')
 		{
@@ -93,8 +85,6 @@ t_flags	*ft_parse_flags(char *str, va_list *ap, size_t *f_len)
 		}
 		else
 			break ;
-		i++;
-	}
 	free(flags);
 	return (NULL);
 }
@@ -129,7 +119,7 @@ int		ft_printf(const char *str, ...)
 	size_t	temp;
 	size_t	length;
 	va_list	ap;
-	
+
 	i = -1;
 	length = 0;
 	va_start(ap, str);

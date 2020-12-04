@@ -1,6 +1,6 @@
 SRC_DIR		= ./srcs/
 
-SRC 		= ${SRC_DIR}ft_itoa.c ${SRC_DIR}ft_printf_flags.c ${SRC_DIR}ft_putnbr_base.c ${SRC_DIR}ft_printf_utils.c ${SRC_DIR}ft_printf.c ${SRC_DIR}ft_printf_type.c ${SRC_DIR}ft_putnbr_fd.c ${SRC_DIR}ft_putstr_fd.c ${SRC_DIR}ft_putchar_fd.c ${SRC_DIR}ft_strlen.c
+SRC 		= ${SRC_DIR}ft_printf_puts.c ${SRC_DIR}ft_itoa.c ${SRC_DIR}ft_printf_flags.c ${SRC_DIR}ft_putnbr_base.c ${SRC_DIR}ft_printf_utils.c ${SRC_DIR}ft_printf.c ${SRC_DIR}ft_printf_type.c
 
 OBJS 		= ${SRC:.c=.o}
 
@@ -29,8 +29,5 @@ fclean:		clean
 re:			fclean all
 
 bonus:		${NAME}
-
-test:		${OBJS}
-			${CC} ${CFLAGS} ${OBJS} -o ${TEST_NAME}
 
 .PHONY:		all clean fclean re bonus

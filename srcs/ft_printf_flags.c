@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 07:48:23 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/04 02:44:53 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/04 03:03:53 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int		ft_calc_zero(t_flags *flags, int nbr, int len)
 		zero = flags->left_zero - len;
 	if (zero < 0 && nbr != 0)
 		zero = 0;
-	if (flags->amount_set && flags->lzero_set && flags->left_zero > flags->amount_show)
+	if (flags->amount_set && flags->lzero_set
+	&& flags->left_zero > flags->amount_show)
 	{
 		flags->spaces = flags->left_zero;
 		flags->spaces_set = 1;
@@ -42,7 +43,8 @@ int		ft_calc_zero_u(t_flags *flags, unsigned int nbr, int len)
 		zero = flags->left_zero - len;
 	if (zero < 0 && nbr != 0)
 		zero = 0;
-	if (flags->amount_set && flags->lzero_set && flags->left_zero > flags->amount_show)
+	if (flags->amount_set && flags->lzero_set
+	&& flags->left_zero > flags->amount_show)
 	{
 		flags->spaces = flags->left_zero;
 		flags->spaces_set = 1;
@@ -73,7 +75,7 @@ void	ft_print_flags(t_flags *flags, int end, size_t len, size_t *length)
 void	ft_print_arg_percentage(t_flags *flags, size_t *length)
 {
 	int j;
-	
+
 	j = (ft_calc_zero(flags, 1, 1));
 	if (j > 0)
 		(*length) += j;
@@ -82,4 +84,15 @@ void	ft_print_arg_percentage(t_flags *flags, size_t *length)
 	ft_putchar_fd('%', 1);
 	ft_print_flags(flags, 1, 1, length);
 	(*length)++;
+}
+
+void	ft_reset_flags(t_flags *flags)
+{
+	flags->type = 0;
+	flags->amount_show = 0;
+	flags->left_zero = 0;
+	flags->amount_set = 0;
+	flags->lzero_set = 0;
+	flags->spaces = 0;
+	flags->spaces_set = 0;
 }

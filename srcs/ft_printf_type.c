@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 04:27:45 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/04 02:45:19 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/04 03:19:05 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@ void	ft_print_arg_int(va_list *ap, t_flags *flags, size_t *length)
 
 	i = 0;
 	nbr = (long int)va_arg(*ap, int);
-	len = (int)ft_strlen((str = ft_itoa(nbr)));
+	if (!(str = ft_itoa(nbr)))
+		return ;
+	len = (int)ft_strlen(str);
 	j = (ft_calc_zero(flags, nbr, len));
-	if (j > 0)
-		len += j;
+	len += j > 0 ? j : 0;
 	if (j == -1 && nbr == 0 && flags->amount_set && flags->amount_show >= 0)
 		len--;
 	ft_print_flags(flags, 0, len, length);
@@ -37,16 +38,15 @@ void	ft_print_arg_int(va_list *ap, t_flags *flags, size_t *length)
 			ft_putchar_fd(str[i++], 1);
 	ft_print_flags(flags, 1, len, length);
 	*length += len;
-	if (str)
-		free(str);
+	free(str);
 }
 
 void	ft_print_arg_uint(va_list *ap, t_flags *flags, size_t *length)
 {
-	size_t 			len;
+	size_t			len;
 	unsigned int	nbr;
 	int				j;
-	
+
 	nbr = (unsigned int)va_arg(*ap, unsigned int);
 	len = ft_unblen(nbr, (flags->type == 'x' || flags->type == 'X'));
 	j = (ft_calc_zero_u(flags, nbr, len));
@@ -70,23 +70,24 @@ void	ft_print_arg_uint(va_list *ap, t_flags *flags, size_t *length)
 void	ft_print_arg_string(va_list *ap, t_flags *flags, size_t *length)
 {
 	size_t		len;
-	const char 	*str;
+	const char	*str;
 	int			j;
-	
+
 	j = 0;
 	str = (const char*)va_arg(*ap, const char*);
 	if (str == NULL)
 		str = "(null)";
 	len = ft_strlen(str);
 	if (flags->amount_set && len > (size_t)flags->amount_show)
-		len = (size_t)flags->amount_show > len ? len + 1 : (size_t)flags->amount_show;
-	else if(!flags->amount_set && flags->lzero_set && flags->left_zero > 0)
+		len = (size_t)flags->amount_show > len
+		? len + 1 : (size_t)flags->amount_show;
+	else if (!flags->amount_set && flags->lzero_set && flags->left_zero > 0)
 		j = flags->left_zero - len;
 	if (j > 0)
 	{
 		ft_repeat_character('0', j);
 		*length += j;
-	}  
+	}
 	*length += len;
 	ft_print_flags(flags, 0, len + (j > 0 ? j : 0), length);
 	if (str)
@@ -97,7 +98,7 @@ void	ft_print_arg_string(va_list *ap, t_flags *flags, size_t *length)
 void	ft_print_arg_character(va_list *ap, t_flags *flags, size_t *length)
 {
 	size_t			len;
-	unsigned char 	c;
+	unsigned char	c;
 
 	c = (unsigned char)va_arg(*ap, int);
 	*length += (len = 1);
@@ -110,8 +111,8 @@ void	ft_print_arg_pointer(va_list *ap, t_flags *flags, size_t *length)
 {
 	size_t			len;
 	unsigned long	n;
-	int			j;
-	
+	int				j;
+
 	n = (unsigned long)va_arg(*ap, unsigned long);
 	(len = (ft_unblen(n, 1) + 2));
 	j = (ft_calc_zero(flags, 1, len - 2));
