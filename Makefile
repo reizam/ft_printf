@@ -1,6 +1,6 @@
 SRC_DIR		= ./srcs/
 
-SRC 		= ${SRC_DIR}ft_itoa.c ${SRC_DIR}ft_printf_flags.c ${SRC_DIR}ft_putnbr_base.c ${SRC_DIR}ft_printf_utils.c ${SRC_DIR}ft_printf.c ${SRC_DIR}ft_printf_type.c ${SRC_DIR}ft_putnbr_fd.c ${SRC_DIR}ft_putstr_fd.c ${SRC_DIR}ft_putchar_fd.c ${SRC_DIR}ft_strlen.c
+SRC 		= main.c ${SRC_DIR}ft_itoa.c ${SRC_DIR}ft_printf_flags.c ${SRC_DIR}ft_putnbr_base.c ${SRC_DIR}ft_printf_utils.c ${SRC_DIR}ft_printf.c ${SRC_DIR}ft_printf_type.c ${SRC_DIR}ft_putnbr_fd.c ${SRC_DIR}ft_putstr_fd.c ${SRC_DIR}ft_putchar_fd.c ${SRC_DIR}ft_strlen.c
 
 OBJS 		= ${SRC:.c=.o}
 
