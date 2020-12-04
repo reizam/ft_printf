@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 04:27:45 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/04 01:16:00 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/04 01:16:36 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void	ft_print_arg_string(va_list *ap, t_flags *flags, size_t *length)
 {
 	size_t		len;
 	const char 	*str;
-	int			j;
 
 	str = (const char*)va_arg(*ap, const char*);
 	if (str == NULL)
