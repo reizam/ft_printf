@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 02:49:48 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/04 02:53:15 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/04 03:32:24 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,13 @@ void	ft_putstr_fd(char *s, int fd)
 void	ft_putchar_fd(char c, int fd)
 {
 	write(fd, &c, 1);
+}
+
+int		ft_is_conversions(char c)
+{
+	return (c == '%' || c == 'd'
+	|| c == 'i' || c == 'x'
+	|| c == 'X' || c == 's'
+	|| c == 'c' || c == 'u'
+	|| c == 'p');
 }

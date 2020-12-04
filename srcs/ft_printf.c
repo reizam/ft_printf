@@ -6,20 +6,11 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 03:21:33 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/04 03:25:01 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/04 03:33:43 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int		ft_is_conversions(char c)
-{
-	return (c == '%' || c == 'd'
-	|| c == 'i' || c == 'x'
-	|| c == 'X' || c == 's'
-	|| c == 'c' || c == 'u'
-	|| c == 'p');
-}
 
 int		ft_parse_nb(char *str, va_list *ap, size_t *offset)
 {
@@ -45,49 +36,55 @@ int		ft_parse_nb(char *str, va_list *ap, size_t *offset)
 	return (result);
 }
 
+int		ft_detect_flags(char *str, int i, va_list *ap, t_flags *flags)
+{
+	if (str[i] == '-')
+	{
+		flags->spaces = (-ft_parse_nb(str + i + 1, ap, &i));
+		flags->spaces_set = 1;
+		if (flags->spaces > 0)
+			flags->spaces *= -1;
+		return (1);
+	}
+	else if (str[i] == '0')
+	{
+		flags->left_zero = ft_parse_nb(str + i + 1, ap, &i);
+		flags->lzero_set = 1;
+		return (1);
+	}
+	else if (str[i] == '.')
+	{
+		flags->amount_show = ft_parse_nb(str + i + 1, ap, &i);
+		flags->amount_set = 1;
+		return (1);
+	}
+	return (0);
+}
+
 t_flags	*ft_parse_flags(char *str, va_list *ap, size_t *f_len)
 {
 	t_flags	*flags;
 	size_t	i;
 
-	i = 1;
+	i = 0;
 	if (!(flags = (t_flags*)malloc(sizeof(t_flags))))
 		return (NULL);
 	ft_reset_flags(flags);
-	if (str[i] == '*' || (str[i] >= '1' && str[i] <= '9'))
+	if (str[1] == '*' || (str[1] >= '1' && str[1] <= '9'))
 	{
-		flags->spaces = ft_parse_nb(str + i, ap, &i);
+		i++;
+		flags->spaces = ft_parse_nb(str + 1, ap, &i);
 		flags->spaces_set = 1;
 	}
-	while (str[i])
-	{
-		if (str[i] == '-')
-		{
-			flags->spaces = (-ft_parse_nb(str + i + 1, ap, &i));
-			flags->spaces_set = 1;
-			if (flags->spaces > 0)
-				flags->spaces *= -1;
-		}
-		else if (str[i] == '0')
-		{
-			flags->left_zero = ft_parse_nb(str + i + 1, ap, &i);
-			flags->lzero_set = 1;
-		}
-		else if (str[i] == '.')
-		{
-			flags->amount_show = ft_parse_nb(str + i + 1, ap, &i);
-			flags->amount_set = 1;
-		}
-		else if (ft_is_conversions(str[i]))
+	while (str[++i])
+		if (ft_is_conversions(str[i]))
 		{
 			flags->type = str[i];
 			*f_len = i;
 			return (flags);
 		}
-		else
+		else if (!ft_detect_flags(str, i, flags, ap))
 			break ;
-		i++;
-	}
 	free(flags);
 	return (NULL);
 }
