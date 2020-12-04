@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 04:27:45 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/04 01:16:36 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/04 01:20:55 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,14 +101,17 @@ void	ft_print_arg_pointer(va_list *ap, t_flags *flags, size_t *length)
 {
 	size_t			len;
 	unsigned long	n;
-
+	int			j;
+	
 	n = (unsigned long)va_arg(*ap, unsigned long);
 	*length += (len = (ft_unblen(n, 1) + 2));
+	j = (ft_calc_zero(flags, 1, len - 2));
+	if (j > 0)
+		*length += j;
 	ft_print_flags(flags, 0, len, length);
 	ft_putstr_fd("0x", 1);
+	ft_repeat_character('0', j);
 	if (n)
 		ft_print_hex(n, 0);
-	else
-		ft_putstr_fd("0", 1);
 	ft_print_flags(flags, 1, len, length);
 }
