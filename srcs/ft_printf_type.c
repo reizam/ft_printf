@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 04:27:45 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/03 13:07:37 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/03 13:24:22 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ void	ft_print_arg_int(va_list *ap, t_flags *flags, size_t *length)
 
 	i = 0;
 	nbr = (long int)va_arg(*ap, int);
-	str = ft_itoa(nbr);
-	len = (int)ft_strlen(str);
+	len = (int)ft_strlen((str = ft_itoa(nbr)));
 	j = (ft_calc_zero(flags, nbr, len));
 	if (j > 0)
 		len += j;
@@ -31,10 +30,7 @@ void	ft_print_arg_int(va_list *ap, t_flags *flags, size_t *length)
 		len--;
 	ft_print_flags(flags, 0, len, length);
 	if (str[0] && str[0] == '-')
-	{
-		ft_putchar_fd('-', 1);
-		i++;
-	}
+		ft_putchar_fd('-', (i = 1));
 	ft_repeat_character('0', j);
 	if (!(j == -1 && nbr == 0 && flags->amount_set && flags->amount_show >= 0))
 		while (str[i])
@@ -67,7 +63,6 @@ void	ft_print_arg_uint(va_list *ap, t_flags *flags, size_t *length)
 		else
 			ft_putunbr_fd(nbr, 1);
 	}
-	
 	ft_print_flags(flags, 1, len, length);
 	*length += len;
 }

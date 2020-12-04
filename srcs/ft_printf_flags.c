@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 07:48:23 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/03 13:00:30 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/04 01:10:20 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,18 @@ void	ft_print_flags(t_flags *flags, int end, size_t len, size_t *length)
 		ft_putchar_fd(' ', 1);
 		diff--;
 	}
+}
+
+void	ft_print_arg_percentage(t_flags *flags, size_t *length)
+{
+	int j;
+	
+	j = (ft_calc_zero(flags, 1, 1));
+	if (j > 0)
+		(*length) += j;
+	ft_print_flags(flags, 0, 1, length);
+	ft_repeat_character('0', j);
+	ft_putchar_fd('%', 1);
+	ft_print_flags(flags, 1, 1, length);
+	(*length)++;
 }

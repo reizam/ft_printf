@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 03:21:33 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/03 10:06:47 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/04 01:09:52 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,21 @@
 
 int		ft_is_conversions(char c)
 {
-	return (c == 'd' || c == 'i' || c == 'x' || c == 'X' || c == 's' || c == 'c' || c == 'u' || c == 'p');
+	return (c == '%' || c == 'd' || c == 'i' || c == 'x' || c == 'X' || c == 's' || c == 'c' || c == 'u' || c == 'p');
 }
 
-int		ft_check_flags(t_flags *flags)
+void	ft_reset_flags(t_flags *flags)
 {
-	return (flags->type != '\0');
+	flags->type = 0;
+	flags->amount_show = 0;
+	flags->left_zero = 0;
+	flags->amount_set = 0;
+	flags->lzero_set = 0;
+	flags->spaces = 0;
+	flags->spaces_set = 0;
 }
 
-int	ft_parse_nb(char *str, va_list *ap, size_t *offset)
+int		ft_parse_nb(char *str, va_list *ap, size_t *offset)
 {
 	int		result;
 	size_t 	i;
@@ -45,7 +51,6 @@ int	ft_parse_nb(char *str, va_list *ap, size_t *offset)
 	*offset += i;
 	return (result);
 }
-#include <stdio.h>
 
 t_flags	*ft_parse_flags(char *str, va_list *ap, size_t *f_len)
 {
@@ -55,13 +60,7 @@ t_flags	*ft_parse_flags(char *str, va_list *ap, size_t *f_len)
 	i = 1;
 	if (!(flags = (t_flags*)malloc(sizeof(t_flags))))
 		return (NULL);
-	flags->type = 0;
-	flags->amount_show = 0;
-	flags->left_zero = 0;
-	flags->amount_set = 0;
-	flags->lzero_set = 0;
-	flags->spaces = 0;
-	flags->spaces_set = 0;
+	ft_reset_flags(flags);
 	if (str[i] == '*' || (str[i] >= '1' && str[i] <= '9'))
 	{
 		flags->spaces = ft_parse_nb(str + i, ap, &i);
@@ -105,7 +104,7 @@ size_t	ft_print_arg(va_list *ap, char *str, size_t *length)
 	t_flags	*flags;
 	size_t	f_len;
 
-	if (!(flags = ft_parse_flags(str, ap, &f_len)) || !ft_check_flags(flags))
+	if (!(flags = ft_parse_flags(str, ap, &f_len)))
 		return (0);
 	if (flags->type == 'd' || flags->type == 'i')
 		ft_print_arg_int(ap, flags, length);
@@ -117,6 +116,8 @@ size_t	ft_print_arg(va_list *ap, char *str, size_t *length)
 		ft_print_arg_character(ap, flags, length);
 	else if (flags->type == 'p')
 		ft_print_arg_pointer(ap, flags, length);
+	else if (flags->type == '%')
+		ft_print_arg_percentage(flags, length);
 	free(flags);
 	flags = NULL;
 	return (f_len);
@@ -135,15 +136,11 @@ int		ft_printf(const char *str, ...)
 	while (str[++i])
 	{
 		if (str[i] == '%' && str[i + 1])
-		{
-			if (str[i + 1] == '%')
-				i++;
-			else if ((temp = ft_print_arg(&ap, (char*)str + i, &length)))
+			if ((temp = ft_print_arg(&ap, (char*)str + i, &length)))
 			{
 				i += temp;
 				continue;
 			}
-		}
 		ft_putchar_fd(str[i], 1);
 		length++;
 	}
