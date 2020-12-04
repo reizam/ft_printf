@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 03:25:52 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/04 03:21:56 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/04 03:32:02 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct	s_flags
 }				t_flags;
 
 int				ft_printf(const char *str, ...);
+int				ft_is_conversions(char c);
 size_t			ft_strlen(const char *s);
 void			ft_putchar_fd(char c, int fd);
 char			*ft_itoa(long int n);

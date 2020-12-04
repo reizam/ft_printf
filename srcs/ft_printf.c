@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 03:21:33 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/04 03:33:43 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/04 03:37:58 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,25 +36,25 @@ int		ft_parse_nb(char *str, va_list *ap, size_t *offset)
 	return (result);
 }
 
-int		ft_detect_flags(char *str, int i, va_list *ap, t_flags *flags)
+int		ft_detect_flags(char *str, size_t *i, va_list *ap, t_flags *flags)
 {
-	if (str[i] == '-')
+	if (str[*i] == '-')
 	{
-		flags->spaces = (-ft_parse_nb(str + i + 1, ap, &i));
+		flags->spaces = (-ft_parse_nb(str + *i + 1, ap, i));
 		flags->spaces_set = 1;
 		if (flags->spaces > 0)
 			flags->spaces *= -1;
 		return (1);
 	}
-	else if (str[i] == '0')
+	else if (str[*i] == '0')
 	{
-		flags->left_zero = ft_parse_nb(str + i + 1, ap, &i);
+		flags->left_zero = ft_parse_nb(str + *i + 1, ap, i);
 		flags->lzero_set = 1;
 		return (1);
 	}
-	else if (str[i] == '.')
+	else if (str[*i] == '.')
 	{
-		flags->amount_show = ft_parse_nb(str + i + 1, ap, &i);
+		flags->amount_show = ft_parse_nb(str + *i + 1, ap, i);
 		flags->amount_set = 1;
 		return (1);
 	}
@@ -83,7 +83,7 @@ t_flags	*ft_parse_flags(char *str, va_list *ap, size_t *f_len)
 			*f_len = i;
 			return (flags);
 		}
-		else if (!ft_detect_flags(str, i, flags, ap))
+		else if (!ft_detect_flags(str, &i, ap, flags))
 			break ;
 	free(flags);
 	return (NULL);
