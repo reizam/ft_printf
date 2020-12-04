@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 03:25:52 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/04 02:23:38 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/04 02:44:29 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct	s_flags
 size_t	ft_strlen(const char *s);
 void	ft_putchar_fd(char c, int fd);
 char	*ft_itoa(long int n);
+int		ft_calc_zero_u(t_flags *flags, unsigned int nbr, int len);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putnbr_fd(long int n, int fd, size_t zero_amount);
 void	ft_putunbr_fd(unsigned int n, int fd);
