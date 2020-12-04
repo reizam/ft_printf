@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 04:27:45 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/04 06:26:18 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/04 06:29:17 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,11 @@ void	ft_print_arg_uint(va_list *ap, t_flags *flags, size_t *length)
 		len += j;
 	if (j == -1 && nbr == 0 && flags->amount_set && flags->amount_show >= 0)
 		len--;
+	if (nbr == 0 && flags->amount_set && flags->amount_show < 0)
+	{
+		len++;
+		j++;
+	}
 	ft_print_flags(flags, 0, len, length);
 	ft_repeat_character('0', j);
 	if (!(j == -1 && nbr == 0 && flags->amount_set && flags->amount_show >= 0))
