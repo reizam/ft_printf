@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 03:21:33 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/04 03:20:02 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/04 03:23:42 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_flags	*ft_parse_flags(char *str, va_list *ap, size_t *f_len)
 	if (!(flags = (t_flags*)malloc(sizeof(t_flags))))
 		return (NULL);
 	ft_reset_flags(flags);
-	if (str[i] == '*' || (str[i] >= '1' && str[i] <= '9'))
+	if (str[1] == '*' || (str[1] >= '1' && str[1] <= '9'))
 	{
 		flags->spaces = ft_parse_nb(str + i, ap, &i);
 		flags->spaces_set = 1;
