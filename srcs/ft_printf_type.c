@@ -6,7 +6,7 @@
 /*   By: kmazier <kmazier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 04:27:45 by kmazier           #+#    #+#             */
-/*   Updated: 2020/12/04 01:26:24 by kmazier          ###   ########.fr       */
+/*   Updated: 2020/12/04 01:28:36 by kmazier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,16 +104,19 @@ void	ft_print_arg_pointer(va_list *ap, t_flags *flags, size_t *length)
 	int			j;
 	
 	n = (unsigned long)va_arg(*ap, unsigned long);
-	*length += (len = (ft_unblen(n, 1) + 2));
+	(len = (ft_unblen(n, 1) + 2));
 	j = (ft_calc_zero(flags, 1, len - 2));
 	if (j > 0)
-		*length += j;
+		len += j;
+	if (j == -1 && n == 0 && flags->amount_set && flags->amount_show >= 0)
+		len--;
 	ft_print_flags(flags, 0, len, length);
 	ft_putstr_fd("0x", 1);
 	ft_repeat_character('0', j);
 	if (n)
 		ft_print_hex(n, 0);
-	else if (!flags->amount_set && j <= 0)
+	else if (!(j == -1 && n == 0 && flags->amount_set && flags->amount_show >= 0))
 		ft_putchar_fd('0', 1);
 	ft_print_flags(flags, 1, len, length);
+	*length += len;
 }
